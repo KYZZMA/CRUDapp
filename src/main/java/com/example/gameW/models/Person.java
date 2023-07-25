@@ -30,7 +30,4 @@ public class Person {
         this.name = name;
     }
 
-    public int sollusion(){    //новое
-        return 5 + id;
-    }
 }

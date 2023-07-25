@@ -36,10 +36,25 @@ public class PersonController {
         personDao.save(person);
         return "redirect:/people";
     }
-    @GetMapping("/game")
-    public int wordle(@RequestParam("word") String word){      //новое
-        return word.length();
+    @GetMapping("/{id}/edit")
+    public String edit(Model model,@PathVariable("id") int id){
+        model.addAttribute("person", personDao.show(id));
+        return "edit";
     }
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id) {
+        personDao.update(id, person);
+        return "redirect:/people";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        personDao.delete(id);
+        return "redirect:/people";
+    }
+
+
+
 
 
 }
